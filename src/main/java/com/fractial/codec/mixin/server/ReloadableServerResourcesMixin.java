@@ -1,5 +1,6 @@
 package com.fractial.codec.mixin.server;
 
+import com.fractial.codec.server.IReloadableServerResources;
 import com.fractial.codec.world.item.ItemStackManager;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.HolderLookup;
@@ -21,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Mixin(ReloadableServerResources.class)
-public class ReloadableServerResourcesMixin {
+public class ReloadableServerResourcesMixin implements IReloadableServerResources {
     @Unique
     private ItemStackManager items;
 
@@ -38,7 +39,7 @@ public class ReloadableServerResourcesMixin {
     }
 
     @Unique
-    public ItemStackManager getItemStackManager() {
+    public ItemStackManager codec$getItemStackManager() {
         return this.items;
     }
 

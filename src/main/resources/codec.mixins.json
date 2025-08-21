@@ -3,7 +3,9 @@
   "package": "com.fractial.codec.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "commands.CommandsMixin",
     "core.registries.RegistriesAccessor",
+    "server.MinecraftServerMixin",
     "server.ReloadableServerResourcesMixin"
   ],
   "injectors": {

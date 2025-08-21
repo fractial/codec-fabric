@@ -30,4 +30,9 @@ public class ItemStackManager extends SimpleJsonResourceReloadListener<ItemStack
     public ItemStack get(ResourceLocation resourceLocation) {
         return this.items.get(resourceLocation);
     }
+
+    @Nullable
+    public Map<ResourceLocation, ItemStack> getAllItems() {
+        return this.items;
+    }
 }
