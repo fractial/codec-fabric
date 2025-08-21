@@ -4,6 +4,7 @@ import com.fractial.codec.Codec;
 import com.fractial.codec.server.IMinecraftServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ReloadableServerResources;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,6 +21,7 @@ public abstract class MinecraftServerMixin implements IMinecraftServer {
     }
 
     @Override
+    @Nullable
     public ReloadableServerResources codec$getResources() {
         try {
             Field resources = MinecraftServer.class.getDeclaredField("resources");

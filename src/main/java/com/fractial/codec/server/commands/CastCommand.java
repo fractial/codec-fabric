@@ -1,6 +1,7 @@
 package com.fractial.codec.server.commands;
 
 import com.fractial.codec.core.registries.CodecRegistries;
+import com.fractial.codec.mixin.core.registries.RegistriesAccessor;
 import com.fractial.codec.server.commands.arguments.CodecResourceKeyArgument;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -24,12 +25,10 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class CastCommand {
     public static void register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandBuildContext) {
-        commandDispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder) Commands.literal("cast").requires(Commands.hasPermission(2))).then(Commands.argument("targets", EntityArgument.players()).then(((RequiredArgumentBuilder)Commands.argument("item", ResourceKeyArgument.key(CodecRegistries.ITEM)).executes((commandContext) -> giveItem((CommandSourceStack)commandContext.getSource(), CodecResourceKeyArgument.getItemStack(commandContext, "item"), EntityArgument.getPlayers(commandContext, "targets"), 1))).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((commandContext) -> giveItem((CommandSourceStack)commandContext.getSource(), CodecResourceKeyArgument.getItemStack(commandContext, "item"), EntityArgument.getPlayers(commandContext, "targets"), IntegerArgumentType.getInteger(commandContext, "count")))))));
+        commandDispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder) Commands.literal("cast").requires(Commands.hasPermission(2))).then(Commands.argument("targets", EntityArgument.players()).then(((RequiredArgumentBuilder)Commands.argument("item", ResourceKeyArgument.key(CodecRegistries.CODEC_ITEM)).suggests((commandContext, suggestionsBuilder) -> SharedSuggestionProvider.suggest(CodecResourceKeyArgument.getItems(commandContext), suggestionsBuilder)).executes((commandContext) -> giveItem((CommandSourceStack)commandContext.getSource(), CodecResourceKeyArgument.getItemStack(commandContext, "item"), EntityArgument.getPlayers(commandContext, "targets"), 1))).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((commandContext) -> giveItem((CommandSourceStack)commandContext.getSource(), CodecResourceKeyArgument.getItemStack(commandContext, "item"), EntityArgument.getPlayers(commandContext, "targets"), IntegerArgumentType.getInteger(commandContext, "count")))))));
     }
 
     private static int giveItem(CommandSourceStack commandSourceStack, ItemStack itemInput, Collection<ServerPlayer> collection, int i) throws CommandSyntaxException {

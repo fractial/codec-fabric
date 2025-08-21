@@ -6,5 +6,5 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
 
 public class CodecRegistries {
-    public static final ResourceKey<Registry<ItemStack>> ITEM = RegistriesAccessor.createRegistryKey("item");
+    public static final ResourceKey<Registry<ItemStack>> CODEC_ITEM = RegistriesAccessor.createRegistryKey("codec_item");
 }

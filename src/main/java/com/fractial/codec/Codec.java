@@ -5,6 +5,7 @@ import com.fractial.codec.server.IReloadableServerResources;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.server.commands.AdvancementCommands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

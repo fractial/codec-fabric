@@ -1,8 +1,10 @@
 package com.fractial.codec.world.item;
 
 import com.fractial.codec.core.registries.CodecRegistries;
+import com.fractial.codec.mixin.core.registries.RegistriesAccessor;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -16,7 +18,7 @@ public class ItemStackManager extends SimpleJsonResourceReloadListener<ItemStack
     private Map<ResourceLocation, ItemStack> items = Map.of();
 
     public ItemStackManager(HolderLookup.Provider provider) {
-        super(provider, ItemStack.CODEC, CodecRegistries.ITEM);
+        super(provider, ItemStack.CODEC, CodecRegistries.CODEC_ITEM);
     }
 
     @Override

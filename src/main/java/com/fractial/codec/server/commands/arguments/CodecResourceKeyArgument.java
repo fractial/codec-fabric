@@ -1,6 +1,7 @@
 package com.fractial.codec.server.commands.arguments;
 
 import com.fractial.codec.core.registries.CodecRegistries;
+import com.fractial.codec.mixin.core.registries.RegistriesAccessor;
 import com.fractial.codec.server.IMinecraftServer;
 import com.fractial.codec.server.IReloadableServerResources;
 import com.fractial.codec.world.item.ItemStackManager;
@@ -14,6 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.minecraft.commands.arguments.ResourceKeyArgument.getRegistryKey;
 
@@ -24,11 +28,11 @@ public class CodecResourceKeyArgument {
 
     public static ItemStack getItemStack(CommandContext<CommandSourceStack> commandContext, String string) throws CommandSyntaxException {
         ItemStackManager itemStackManager = ((IReloadableServerResources)((IMinecraftServer) commandContext.getSource().getServer()).codec$getResources()).codec$getItemStackManager();
-        ResourceKey<ItemStack> resourceKey = getRegistryKey(commandContext, string, CodecRegistries.ITEM, ERROR_INVALID_ITEM);
+        ResourceKey<ItemStack> resourceKey = getRegistryKey(commandContext, string, RegistriesAccessor.createRegistryKey("codec_item"), ERROR_INVALID_ITEM);
         return itemStackManager.get(resourceKey.location());
     }
 
-//    public static Map<ResourceLocation, ItemStack> getItems(CommandContext<CommandSourceStack> commandContext) {
-//        return ((IReloadableServerResources)((IMinecraftServer) commandContext.getSource().getServer()).codec$getResources()).codec$getItemStackManager();
-//    }
+    public static Stream<String> getItems(CommandContext<CommandSourceStack> commandContext) {
+        return ((IReloadableServerResources)((IMinecraftServer) commandContext.getSource().getServer()).codec$getResources()).codec$getItemStackManager().getAllItems().keySet().stream().map(ResourceLocation::toString);
+    }
 }
