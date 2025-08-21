@@ -22,6 +22,7 @@ public abstract class MinecraftServerMixin implements IMinecraftServer {
 
     @Override
     @Nullable
+    @Deprecated
     public ReloadableServerResources codec$getResources() {
         try {
             Field resources = MinecraftServer.class.getDeclaredField("resources");

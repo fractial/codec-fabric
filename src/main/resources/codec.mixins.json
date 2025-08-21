@@ -6,7 +6,10 @@
     "commands.CommandsMixin",
     "core.registries.RegistriesAccessor",
     "server.MinecraftServerMixin",
-    "server.ReloadableServerResourcesMixin"
+    "server.ReloadableServerResourcesMixin",
+    "world.item.crafting.ShapedRecipeAccessor",
+    "world.item.crafting.ShapedRecipeMixin",
+    "world.item.crafting.ShapedRecipeMixin$SerializerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
