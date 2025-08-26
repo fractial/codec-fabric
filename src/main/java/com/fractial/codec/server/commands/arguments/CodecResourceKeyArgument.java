@@ -22,7 +22,7 @@ public class CodecResourceKeyArgument {
 
     public static ItemStack getItemStack(CommandContext<CommandSourceStack> commandContext, String string) throws CommandSyntaxException {
         ResourceKey<ItemStack> resourceKey = getRegistryKey(commandContext, string, RegistriesAccessor.createRegistryKey("codec_item"), ERROR_INVALID_ITEM);
-        return ItemStackManager.get(resourceKey.location());
+        return ItemStackManager.getItemStack(resourceKey.location());
     }
 
     public static Stream<String> getItems(CommandContext<CommandSourceStack> commandContext) {

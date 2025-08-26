@@ -3,13 +3,22 @@
   "package": "com.fractial.codec.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockBehaviourMixin",
+    "ClientboundPlayerInfoUpdatePacketMixin",
+    "RecipeManagerMixin",
     "commands.CommandsMixin",
     "core.registries.RegistriesAccessor",
     "server.MinecraftServerMixin",
     "server.ReloadableServerResourcesMixin",
+    "server.level.ServerPlayerGameModeMixin",
     "world.item.crafting.ShapedRecipeAccessor",
     "world.item.crafting.ShapedRecipeMixin",
-    "world.item.crafting.ShapedRecipeMixin$SerializerMixin"
+    "world.item.crafting.ShapedRecipeMixin$SerializerMixin",
+    "world.item.crafting.ShapelessRecipeAccessor",
+    "world.item.crafting.ShapelessRecipeMixin",
+    "world.item.crafting.ShapelessRecipeMixin$SerializerMixin",
+    "world.item.crafting.SingleItemRecipeMixin",
+    "world.item.crafting.SingleItemRecipeMixin$SerializerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

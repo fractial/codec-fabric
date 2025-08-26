@@ -20,19 +20,19 @@ public abstract class MinecraftServerMixin implements IMinecraftServer {
         cir.setReturnValue(Codec.MOD_ID);
     }
 
-    @Override
-    @Nullable
-    @Deprecated
-    public ReloadableServerResources codec$getResources() {
-        try {
-            Field resources = MinecraftServer.class.getDeclaredField("resources");
-            resources.setAccessible(true);
-            Method managers = resources.getType().getDeclaredMethod("managers");
-            managers.setAccessible(true);
-            Object reloadableResources = resources.get(this);
-            return (ReloadableServerResources) managers.invoke(reloadableResources);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    @Override
+//    @Nullable
+//    @Deprecated
+//    public ReloadableServerResources codec$getResources() {
+//        try {
+//            Field resources = MinecraftServer.class.getDeclaredField("resources");
+//            resources.setAccessible(true);
+//            Method managers = resources.getType().getDeclaredMethod("managers");
+//            managers.setAccessible(true);
+//            Object reloadableResources = resources.get(this);
+//            return (ReloadableServerResources) managers.invoke(reloadableResources);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 }
